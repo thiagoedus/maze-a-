@@ -9,16 +9,15 @@ def a_star(maze_map, initial_position, end_position):
     open_list = []
     closed_list = []
 
-    open_list.append(initial_position)
+    open_list.append((initial_position, 0))
 
     # while True:
     if not open_list:
         print("No path was found")
     else:
-        position = open_list[-1]
-        for neighbors in maze_map[position]:
-            print(neighbors)
-
+        position = open_list[-1][0]
+        neighborhood = [neighbor for neighbor, value in maze_map[position].items() if value == 1]
+        print(neighborhood)
 
 
 def new_position(position, move):
@@ -37,5 +36,5 @@ def new_position(position, move):
     else:
         print("Position not found")
 
-def calculate_cost(position, end_position):
-    ...
+def calculate_cost_destiny(position, end_position):
+    return abs((position[0] - end_position[0]) + (position[1] - end_position[1]))
