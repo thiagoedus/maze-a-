@@ -1,7 +1,7 @@
 from pyamaze import maze, agent
 from a_star import a_star
 
-labirinto = maze(5, 15)
+labirinto = maze(10, 9)
 
 end_position = (5, 5)
 
@@ -16,11 +16,11 @@ mapa = labirinto.maze_map
 # caminho = labirinto.path
 # print(caminho)
 
-agente = agent(labirinto, filled=True, footprints=True)
+agente = agent(labirinto, filled=True) # Adicionar footprints = True
 
+agente.position = (2, 3)
 posicao = agente.position
 print(posicao)
-# agente.position = (10, 9)
 
 # caminho = {(10, 10): (10, 9), (10, 9): (10, 8), (10, 8): (10, 7)}
 # labirinto.tracePath({agente: caminho}, delay=700)
