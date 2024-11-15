@@ -1,30 +1,25 @@
 from pyamaze import maze, agent
 from a_star import a_star
 
-labirinto = maze(10, 9)
+# Define as dimensões do labirinto
+maze = maze(40, 40)
 
-end_position = (5, 5)
+# Definido a posição final
+end_position = (1, 1)
 
-labirinto.CreateMaze(y=end_position[0], x=end_position[1])
+# Passando a posição final; loopPercent = número de caminhos possíveis
+maze.CreateMaze(y=end_position[0], x=end_position[1], loopPercent=10)
 
-# celulas = labirinto.grid
-# print(celulas)
 
-mapa = labirinto.maze_map
-#print(mapa)
+mapa = maze.maze_map
 
-# caminho = labirinto.path
-# print(caminho)
+maze_agent = agent(maze, filled=True, footprints=True) 
 
-agente = agent(labirinto, filled=True) # Adicionar footprints = True
 
-agente.position = (2, 3)
-posicao = agente.position
-print(posicao)
+position_agent = maze_agent.position
 
-# caminho = {(10, 10): (10, 9), (10, 9): (10, 8), (10, 8): (10, 7)}
-# labirinto.tracePath({agente: caminho}, delay=700)
 
-a_star(mapa, posicao, end_position)
+caminho = a_star(mapa, position_agent, end_position)
+maze.tracePath({maze_agent: caminho}, delay=10)
 
-labirinto.run()
+maze.run()
